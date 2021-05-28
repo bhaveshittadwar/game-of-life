@@ -1,7 +1,22 @@
 body {
+  display: flex;
+  margin: 0;
   background: black;
+  justify-content: space-around;
+}
+
+.header {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
 }
 
 canvas {
+  margin: 50px;
   background: white;
 }
