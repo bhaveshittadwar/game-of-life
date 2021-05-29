@@ -3,6 +3,7 @@ const context = canvas.getContext('2d')
 const {size, scale} = responsive()
 const resolution = size / scale
 let speed = 50
+let seeColors = false
 
 let prevCells, cells
 
@@ -60,7 +61,12 @@ const drawCells = () => {
   context.fillStyle = 'white'
   for(let y = 0; y < resolution; y++) {
     for (let x = 0; x < resolution; x++) {
-      fillColor(x, y)
+      if(seeColors) fillColor(x, y)
+      else {
+        if (cells[x][y]) {
+          context.fillRect(x, y, 1, 1)
+        }
+      }
     }
   }
 }
@@ -105,4 +111,4 @@ setup()
 randomCells()
 createCells()
 drawCells()
-setInterval(step, speed);
+let simulation = setInterval(step, speed)
