@@ -1,7 +1,6 @@
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
-const size = 750
-const scale = 3
+const {size, scale} = responsive()
 const resolution = size / scale
 let speed = 50
 
