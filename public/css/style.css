@@ -8,9 +8,40 @@ body {
 
 .header {
   display: flex;
+  flex-direction: column;
   color: white;
   justify-content: center;
   align-items: center;
+}
+
+.controls {
+  width: 100%;
+  text-align: center;
+}
+
+.controls input {
+  background: black;
+  color: white;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  font-size: large;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+.controls .colors:hover {
+  cursor: pointer;
+}
+
+.controls .colors.addcolor {
+  background: radial-gradient(lightgreen, orange);
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.step:disabled {
+  color: grey;
 }
 
 @media screen and (min-width: 1200px) {

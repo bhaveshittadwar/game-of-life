@@ -3,8 +3,9 @@ const context = canvas.getContext('2d')
 const {size, scale} = responsive()
 const resolution = size / scale
 let speed = 50
+let seeColors = false
 
-let cells
+let prevCells, cells
 
 const setup = () => {
   canvas.width = size
@@ -12,6 +13,7 @@ const setup = () => {
   context.scale(scale, scale)
   context.fillStyle = 'white'
   cells = createCells()
+  prevCells = createCells()
 }
 
 const createCells = () => {
@@ -36,20 +38,41 @@ const randomCells = () => {
   }
 }
 
+const fillColor = (x, y) => {
+  
+  if (!prevCells[x][y] && cells[x][y]) {
+    context.fillStyle = 'lightgreen'
+    context.fillRect(x, y, 1, 1)
+  } else if (prevCells[x][y] && cells[x][y]) {
+    context.fillStyle = 'white'
+    context.fillRect(x, y, 1, 1)
+  } else if (prevCells[x][y] && !cells[x][y]){
+    context.fillStyle = 'orange'
+    context.fillRect(x, y, 1, 1)
+  } else if (!prevCells[x][y] && !cells[x][y]) {
+    context.fillStyle = 'black'
+    context.fillRect(x, y, 1, 1)
+  }
+}
+
 const drawCells = () => {
   context.fillStyle = 'black'
   context.fillRect(0, 0, resolution, resolution)
   context.fillStyle = 'white'
   for(let y = 0; y < resolution; y++) {
     for (let x = 0; x < resolution; x++) {
-      if(cells[x][y]) {
-        context.fillRect(x, y, 1, 1)
+      if(seeColors) fillColor(x, y)
+      else {
+        if (cells[x][y]) {
+          context.fillRect(x, y, 1, 1)
+        }
       }
     }
   }
 }
 
 const step = () => {
+  prevCells = cells
   let newCells = createCells()
   for(let y = 0; y < resolution; y++) {
     for (let x = 0; x < resolution; x++) {
@@ -88,4 +111,4 @@ setup()
 randomCells()
 createCells()
 drawCells()
-setInterval(step, speed);
+let simulation = setInterval(step, speed)
