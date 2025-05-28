@@ -47,7 +47,8 @@ body {
 @media screen and (min-width: 1200px) {
   body {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1rem;
   }
 
   canvas {
